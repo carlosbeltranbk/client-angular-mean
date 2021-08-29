@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">LISTADO DE PRODUCTOS</span>
+                    <button class="btn btn-success float-end" routerLink="/crear-producto"><i class="fas fa-plus-circle"></i></button>
+                    <table *ngIf="listaProductos.length > 0" class="table table-hover table-striped mt-3">
+                      <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Ubicación</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let producto of listaProductos">
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.categoria }}</td>
+                            <td>{{ producto.ubicacion }}</td>
+                            <td>{{ producto.precio | currency: 'USD' }}</td>
+                            <td>
+                              <i  [routerLink]="['/editar-producto', producto._id]" class="far fa-edit text-warning"></i>
+                              <i (click)="eliminarProducto(producto._id)" class="far fa-trash-alt text-danger"></i>
+                          </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 style="text-align: start; margin-top: 10px;" *ngIf="listaProductos.length == 0">No hay productos registrados</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
